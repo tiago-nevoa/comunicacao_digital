@@ -1,4 +1,4 @@
-count_zeros( int val )
+int count_zeros( int val )
 {
 	int count = 0;
 

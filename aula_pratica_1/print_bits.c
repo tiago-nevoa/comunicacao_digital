@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 void print_bits( int val )
 {
 	// int in C is 32 bits we start on the most relevant bit

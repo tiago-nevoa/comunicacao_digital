@@ -1,4 +1,4 @@
-count_ones( int val )
+int count_ones( int val )
 {
 	int count = 0;
 
