@@ -6,11 +6,10 @@ int count_zeros( int val );
 
 int main (void)
 {
-	int value = 0;
+	int value = 123456;
 
 	print_bits(value);
-	printf("We have %dx 0's",count_ones(value));
-	printf("\n");
-	printf("We have %dx 1's",count_zeros(value));
+	printf("We have %dx 0's \n",count_ones(value));
+	printf("We have %dx 1's \n",count_zeros(value));
 	return (0);
 }
