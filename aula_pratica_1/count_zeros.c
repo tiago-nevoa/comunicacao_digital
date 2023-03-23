@@ -4,7 +4,7 @@ count_zeros( int val )
 
 	while (val!=0)
 	{
-		count += val & 1;
+		count += (val & 1) == 0;
 		val >>= 1;
 	}
 
