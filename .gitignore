@@ -1,1 +1,7 @@
 .DS_Store
+.vscode/c_cpp_properties.json
+.gitignore
+.vscode/settings.json
+.vscode/launch.json
+.gitignore
+aula_pratica_1/a.out
