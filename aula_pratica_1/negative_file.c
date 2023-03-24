@@ -5,14 +5,13 @@
 
 void negative_file( char *input_file_name, char *output_file_name){
 
-char most_frequent_symbol(char *file_name) {
     FILE *fp;
     int count[NUM_CHARS] = {0};
     int max_count = 0;
     char max_char = '\0';
     int c;
 
-    fp = fopen(file_name, "r");
+    fp = fopen(input_file_name, "r");
     if (fp == NULL) {
         printf("Error opening file\n");
         exit(1);
