@@ -1,36 +1,20 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-#define NUM_CHARS 256
+void negative_file(char *input_file_name, char *output_file_name) {
+    FILE *input_file = fopen(input_file_name, "rb"); // abre arquivo de entrada em modo binário
+    FILE *output_file = fopen(output_file_name, "wb"); // abre arquivo de saída em modo binário
 
-void negative_file( char *input_file_name, char *output_file_name){
-
-    FILE *fp;
-    int count[NUM_CHARS] = {0};
-    int max_count = 0;
-    char max_char = '\0';
-    int c;
-
-    fp = fopen(input_file_name, "r");
-    if (fp == NULL) {
-        printf("Error opening file\n");
-        exit(1);
+    if (input_file == NULL || output_file == NULL) {
+        printf("Erro ao abrir arquivos!\n");
+        return;
     }
 
-    while ((c = fgetc(fp)) != EOF) {
-        if (c >= 0 && c < NUM_CHARS) {
-            count[c]++;
-            if (count[c] > max_count) {
-                max_count = count[c];
-                max_char = c;
-            }
-        }
+    int byte;
+    while ((byte = fgetc(input_file)) != EOF) { // lê cada byte do arquivo de entrada
+        byte = ~byte; // realiza a negação de cada bit do byte
+        fputc(byte, output_file); // escreve o byte negado no arquivo de saída
     }
 
-    fclose(fp);
-
-	/*	Change the code to read and write with the conditions:
-		a qual transforma o ficheiro de entrada input_file_name no ficheiro de saída output_file_name.
-		O ficheiro de saída é produzido a partir do ficheiro de entrada através na negação de cada bit do mesmo.
-	*/
+    fclose(input_file); // fecha o arquivo de entrada
+    fclose(output_file); // fecha o arquivo de saída
 }
