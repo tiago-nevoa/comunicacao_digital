@@ -12,13 +12,7 @@ int main (void)
 	print_bits(value);
 	printf("We have %dx 1's \n",count_ones(value));
 	printf("We have %dx 0's \n",count_zeros(value));
-
-	char file_name[100];
-    char most_frequent;
-
-    most_frequent = most_frequent_symbol("ListaPalavrasEN.txt");
-
-    printf("The most frequent symbol in the file is '%c'\n", most_frequent);
+    printf("The most frequent symbol in the file is '%c'\n", most_frequent_symbol("ListaPalavrasEN.txt"));
 
 	return (0);
 }
