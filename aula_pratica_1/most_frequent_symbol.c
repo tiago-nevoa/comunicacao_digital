@@ -27,6 +27,6 @@ char most_frequent_symbol(char *file_name) {
     }
 
     fclose(fp);
-
+	printf("Number of Occurrences: %d\n",max_count);
     return max_char;
 }
