@@ -13,6 +13,8 @@ int main (void)
 	char my_second_file[] = "ListaPalavrasPT.txt";
 	char my_first_encryption[] = "ListaPalavrasENencrypted.txt";
 	char my_first_decryption[] = "ListaPalavrasENdecrypted.txt";
+	char my_second_encryption[] = "ListaPalavrasPTencrypted.txt";
+	char my_second_decryption[] = "ListaPalavrasPTdecrypted.txt";
 
 	print_bits(value);
 	printf("We have %dx 1's \n",count_ones(value));
@@ -22,6 +24,8 @@ int main (void)
 
 	negative_file(my_first_file,my_first_encryption);
 	negative_file(my_first_encryption,my_first_decryption);
+	negative_file(my_second_file,my_second_encryption);
+	negative_file(my_second_encryption,my_second_decryption);
 
 	return (0);
 }
