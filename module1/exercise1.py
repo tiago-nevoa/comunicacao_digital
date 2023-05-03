@@ -115,4 +115,4 @@ def histogram(file):
     print("Total entropy: {total_entropy}".format(total_entropy=round(total_entropy, 2)))
 
 
-histogram(files_path / "a.txt")
+#histogram(files_path / "a.txt")
