@@ -1,6 +1,7 @@
 import math
-from pathlib import Path
 import os
+from pathlib import Path
+from exercise1 import symb_frequencies
 
 # Para todos os ficheiros do conjunto TestFilesCD.zip,
 # apresente o histograma,
@@ -9,21 +10,6 @@ import os
 
 files_path = Path("TestFilesCD/")
 list_of_files = os.listdir(files_path)
-
-def symb_frequencies(file):
-    frequencies = {}
-    with open(file, "r", errors='ignore') as f:
-        lines = f.readlines()
-        for line in lines:
-            symbols = list(line.strip().replace(" ", ""))
-            for char in symbols:
-                if frequencies.setdefault(char) == None:
-                    frequencies[char] = 1
-                else:
-                    frequencies[char] += 1
-        f.close()
-    return frequencies
-
 
 def self_information_and_entropy(file):
     frequencies = symb_frequencies(file)
@@ -34,10 +20,10 @@ def self_information_and_entropy(file):
 
     for key in frequencies:
         percentage = frequencies[key] / total_frequencies
-        #self-information
+        # self-information
         symbol_self_information = round(math.log(1 / percentage, 2), 2)
         self_informations.append(symbol_self_information)
-        #entropy
+        # entropy
         entropy = -(percentage * math.log(percentage, 2))
         total_entropy += entropy
 
@@ -46,6 +32,6 @@ def self_information_and_entropy(file):
 
 
 for file in list_of_files:
-  print(f'File: {file}')
-  self_information_and_entropy(files_path / file)
-  print()
+    print(f'File: {file}')
+    self_information_and_entropy(files_path / file)
+    print()
