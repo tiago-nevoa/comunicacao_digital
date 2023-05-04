@@ -1,5 +1,6 @@
 import random
-import string 
+from random import randrange
+import string
 
 # (a) Implemente uma fonte de símbolos genérica, a qual gera ficheiros com N símbolos, de acordo com a Função Massa de
 # Probabilidade (FMP) do alfabeto de M símbolos: p(x) = {p(x1), p(x2), . . . , p(xM)}.
@@ -37,7 +38,9 @@ def generateFiles(numSymbols):
 
   print(symbols)
 
-generateFiles(100)
+  symbols
+
+#generateFiles(100)
 
 # (b) Produza sequências com diferentes dimensões N, para valores de N à sua escolha. Compare o valor da entropia da fonte,
 # H(X), com o valor estimado para a entropia das sequências geradas. Comente os resultados obtidos, em função do par
@@ -46,3 +49,10 @@ generateFiles(100)
 
 # (c) Recorra à implementação da fonte de símbolos, para realizar um gerador de palavras-passe robustas, com dimensão entre
 # 8 e 12 caracteres. Apresente cinco exemplos de palavras-passe geradas.
+
+def password_generator():
+  password_size = randrange(8,12)
+  all_symbols = generateFiles()
+
+password_generator()
+    
