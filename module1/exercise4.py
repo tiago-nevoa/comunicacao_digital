@@ -6,24 +6,28 @@
 # funcionamento fazendo a cifra e a decifra da sequência abcabcd, considerando a chave constante e igual a 3333333.
 
 def makeVernamCypher(plainText, theKey):
-  #theKey = 3333333
+
   if isinstance(plainText, int):
     return bin(plainText^theKey)
   else:
     numbers = []
 
-    for char in list(plainText):
-      numbers.append(str(ord(char)))
-
-    num_sequence = int(''.join(numbers))
+    binary_sequence = ''.join(format(ord(x), 'b') for x in plainText)
     
-    return bin(num_sequence^theKey)
+    value = bin(int(binary_sequence, 2)^theKey)
 
-A = 'abcabcd'
-B = 3333333
+    return isinstance(value, str)
+    
+sequence = 'abcabcd'
+constantKey = 3333333
 
-print(makeVernamCypher(A, B))
-print(makeVernamCypher(A, B))
+cypherText = makeVernamCypher(sequence, constantKey)
+
+decypherText = makeVernamCypher(cypherText, constantKey)
+
+print(cypherText)
+# print("********************************")
+print(decypherText)
 
 # (b) Realize a cifra do ficheiro alice29.txt (texto em claro) com a chave constante e com chave correspondendo a uma
 # sequência aleatória de caracteres. Para ambas as situações determine os histogramas e entropias do texto em claro e do
