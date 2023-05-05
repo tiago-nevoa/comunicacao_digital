@@ -23,24 +23,7 @@ def generic_symbols_source(symb_map, n):
     file.write(letter)
   file.close()
 
-# generic_symbols_source({'o': 1/4, 'a': 1/4, 'f': 1/8, 'e': 1/4, 'z': 1/8}, 3000)
-
-
-# VERSION 2: GENERATE ANY RANDOM LIST OF ALL DIGIT
-def generateFiles(numSymbols):
-
-  chars = list(string.ascii_letters) + list(string.digits) + list(string.punctuation)
-
-  symbols = [] 
-
-  for i in range(numSymbols):
-      symbols.append(chars[random.randint(0,len(chars) - 1)])
-
-  print(symbols)
-
-  return symbols
-
-#generateFiles(100)
+generic_symbols_source({'a': 1/2, 'b': 1/4, 'c': 1/8, 'd': 1/8}, 12)
 
 # (b) Produza sequências com diferentes dimensões N, para valores de N à sua escolha. Compare o valor da entropia da fonte,
 # H(X), com o valor estimado para a entropia das sequências geradas. Comente os resultados obtidos, em função do par

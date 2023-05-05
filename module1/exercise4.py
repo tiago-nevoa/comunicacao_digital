@@ -6,28 +6,36 @@
 # funcionamento fazendo a cifra e a decifra da sequência abcabcd, considerando a chave constante e igual a 3333333.
 
 def makeVernamCypher(plainText, theKey):
+  # convert plainText to int
+  if isinstance(plainText, str):
+    plainText = stringToBinary(plainText)
+  # plainText XOR theKey
+  return plainText^theKey
 
-  if isinstance(plainText, int):
-    return bin(plainText^theKey)
-  else:
-    numbers = []
+def binaryToString(number):
+  sequenceBytes = number.to_bytes((number.bit_length() + 7) // 8, 'big')
+  stringSequence = sequenceBytes.decode('UTF-8')
+  return stringSequence
 
-    binary_sequence = ''.join(format(ord(x), 'b') for x in plainText)
-    
-    value = bin(int(binary_sequence, 2)^theKey)
-
-    return isinstance(value, str)
-    
+def stringToBinary(text):
+  return int.from_bytes(text.encode(), "big")
+  
+  
 sequence = 'abcabcd'
+sequenceIntFormat = int.from_bytes(sequence.encode(), "big")
+print("Sequence in binary format is: " + bin(sequenceIntFormat))
+
 constantKey = 3333333
+print("Key in binary format is: " + bin(constantKey))
 
 cypherText = makeVernamCypher(sequence, constantKey)
-
 decypherText = makeVernamCypher(cypherText, constantKey)
 
-print(cypherText)
-# print("********************************")
-print(decypherText)
+print("Is the decypher correct?")
+print(sequenceIntFormat==decypherText)
+print("Has the sequence returned to the original format?")
+print("Result: " + binaryToString(decypherText))
+
 
 # (b) Realize a cifra do ficheiro alice29.txt (texto em claro) com a chave constante e com chave correspondendo a uma
 # sequência aleatória de caracteres. Para ambas as situações determine os histogramas e entropias do texto em claro e do
