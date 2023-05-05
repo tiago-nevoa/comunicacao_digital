@@ -16,29 +16,24 @@ def self_information_and_entropy(file):
     frequencies = symb_frequencies(file)
     total_frequencies = float(sum(frequencies.values()))
 
-    self_informations = []
+    self_informations = {}
     total_entropy = 0
-    # create lists for histogram data
-    keys = []
-    counts = []
 
     for key in frequencies:
         percentage = frequencies[key] / total_frequencies
         # self-information
         symbol_self_information = round(math.log(1 / percentage, 2), 2)
-        self_informations.append(symbol_self_information)
+        self_informations[key] = symbol_self_information
         # entropy
         entropy = -(percentage * math.log(percentage, 2))
         total_entropy += entropy
-        keys.append(key)
-        frequency = frequencies[key]
-        counts.append(frequency)
 
-    print(f'Self-informations: {self_informations}')
+    for key in self_informations:
+        print(f'I({key}): {self_informations[key]}')
     print(f'H = {total_entropy}')
 
-    # plot histogram
-    plt.bar(keys, counts)
+    # histogram
+    plt.bar(frequencies.keys(), frequencies.values())
     plt.title('Histogram')
     plt.xlabel('Symbol')
     plt.ylabel('Count')
