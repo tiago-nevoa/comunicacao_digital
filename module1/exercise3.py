@@ -38,7 +38,7 @@ def generateFiles(numSymbols):
 
   print(symbols)
 
-  symbols
+  return symbols
 
 #generateFiles(100)
 
@@ -51,8 +51,20 @@ def generateFiles(numSymbols):
 # 8 e 12 caracteres. Apresente cinco exemplos de palavras-passe geradas.
 
 def password_generator():
-  password_size = randrange(8,12)
-  all_symbols = generateFiles()
 
-password_generator()
+  all_symbols = list(string.ascii_letters) + list(string.digits) + list(string.punctuation)
+
+  password_size = randrange(8,13)
+  random_symbols = random.choices(all_symbols, k=password_size)
+
+  password = ''.join(random_symbols)
+  return password
+
+
+results = []
+
+for num in range(5):
+  results.append(password_generator())
+
+print(results)
     
