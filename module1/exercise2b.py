@@ -12,8 +12,9 @@ from exercise2a import self_information_and_entropy
 files_path = Path("Word_lists/")
 list_of_files = os.listdir(files_path)
 
-for file in list_of_files:
-    print(f'File: {file}')
-    self_information_and_entropy(files_path / file)
+# TODO: histograma parece nao estar a sair corretamente
+for file_name in list_of_files:
+    print(f'File: {file_name}')
+    self_information_and_entropy(files_path / file_name)
     print()
 

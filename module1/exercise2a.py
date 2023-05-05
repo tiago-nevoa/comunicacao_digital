@@ -34,13 +34,13 @@ def self_information_and_entropy(file):
 
     # histogram
     plt.bar(frequencies.keys(), frequencies.values())
-    plt.title('Histogram')
+    plt.title(file_name)
     plt.xlabel('Symbol')
     plt.ylabel('Count')
     plt.show()
 
 
-for file in list_of_files:
-    print(f'File: {file}')
-    self_information_and_entropy(files_path / file)
+for file_name in list_of_files:
+    print(f'File: {file_name}')
+    self_information_and_entropy(files_path / file_name)
     print()
