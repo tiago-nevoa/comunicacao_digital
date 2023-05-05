@@ -61,10 +61,10 @@ def password_generator():
   return password
 
 
-results = []
+five_strong_passwords = []
 
 for num in range(5):
-  results.append(password_generator())
+  five_strong_passwords.append(password_generator())
 
-print(results)
+print(five_strong_passwords)
     
