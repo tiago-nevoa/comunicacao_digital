@@ -20,23 +20,36 @@ def binaryToString(number):
 def stringToBinary(text):
   return int.from_bytes(text.encode(), "big")
   
-  
-sequence = 'abcabcd'
-sequenceIntFormat = int.from_bytes(sequence.encode(), "big")
-print("Sequence in binary format is: " + bin(sequenceIntFormat))
 
-constantKey = 3333333
-print("Key in binary format is: " + bin(constantKey))
+# sequence = 'abcabcd'
+# sequenceIntFormat = int.from_bytes(sequence.encode(), "big")
+# print("Sequence in binary format is: " + bin(sequenceIntFormat))
 
-cypherText = makeVernamCypher(sequence, constantKey)
-decypherText = makeVernamCypher(cypherText, constantKey)
+# constantKey = 3333333
+# print("Key in binary format is: " + bin(constantKey))
 
-print("Is the decypher correct?")
-print(sequenceIntFormat==decypherText)
-print("Has the sequence returned to the original format?")
-print("Result: " + binaryToString(decypherText))
+# cypherText = makeVernamCypher(sequence, constantKey)
+# decypherText = makeVernamCypher(cypherText, constantKey)
+
+# print("Is the decypher correct?")
+# print(sequenceIntFormat==decypherText)
+# print("Has the sequence returned to the original format?")
+# print("Result: " + binaryToString(decypherText))
 
 
 # (b) Realize a cifra do ficheiro alice29.txt (texto em claro) com a chave constante e com chave correspondendo a uma
 # sequência aleatória de caracteres. Para ambas as situações determine os histogramas e entropias do texto em claro e do
 # texto cifrado. Compare os resultados e comente.
+
+alice_cypher = makeVernamCypher()
+
+n = len(list(str(constantKey)))
+chunks = []
+
+with open(file, "r", errors='ignore') as f:
+  lines = f.readlines()
+  for line in lines:
+    chunks.append([line[i:i+n] for i in range(0, len(line)), n)]))
+
+print(chunks)
+    
