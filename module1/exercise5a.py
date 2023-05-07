@@ -7,16 +7,16 @@ def binary_symmetric_channel(binary_sequence, p):
 
   sequence_list = list(binary_sequence)
 
-  output_bits = []
+  transmitted_bits = []
 
   for input_bit in sequence_list:
     if random.random() < p:
       # flip the input bit with probability p
-      output_bits.append(1 - int(input_bit))
+      transmitted_bits.append(str(1 - int(input_bit)))
     else:
       # return the input bit unchanged
-      output_bits.append(int(input_bit))
+      transmitted_bits.append(str(int(input_bit)))
 
-  return output_bits
+  return "".join(transmitted_bits)
 
 
