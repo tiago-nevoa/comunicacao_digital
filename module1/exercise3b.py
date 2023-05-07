@@ -3,4 +3,6 @@
 # H(X), com o valor estimado para a entropia das sequências geradas. Comente os resultados obtidos, em função do par
 # de valores M e N.
 
+
+
 # TODO
