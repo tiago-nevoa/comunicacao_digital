@@ -3,8 +3,8 @@ from exercise3 import password_generator
 from exercise4b import *
 
 fileIn = "TestFilesCD/alice29.txt"
-fileOutEnc = "Output_Files/encrypted-file.txt"
-fileOutDec = "Output_Files/decrypted-file.txt"
+fileOutEnc = "Output_Files/encrypted_file.txt"
+fileOutDec = "Output_Files/decrypted_file.txt"
 
 theKey = password_generator().encode('utf-8')
 print("The generator key is: ")
