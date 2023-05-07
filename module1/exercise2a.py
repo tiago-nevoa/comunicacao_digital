@@ -1,6 +1,4 @@
 import math
-import os
-from pathlib import Path
 from exercise1 import symb_frequencies
 import matplotlib.pyplot as plt
 
@@ -8,9 +6,6 @@ import matplotlib.pyplot as plt
 # apresente o histograma,
 # o valor da informação própria de cada símbolo
 # e o valor da entropia do ficheiro.
-
-files_path = Path("TestFilesCD/")
-list_of_files = os.listdir(files_path)
 
 
 def self_information_and_entropy(file):
@@ -35,13 +30,10 @@ def self_information_and_entropy(file):
 
     # histogram
     plt.bar(frequencies.keys(), frequencies.values())
-    plt.title(file_name)
+    plt.title(file)
     plt.xlabel('Symbol')
     plt.ylabel('Count')
     plt.show()
 
 
-for file_name in list_of_files:
-    print(f'File: {file_name}')
-    self_information_and_entropy(files_path / file_name)
-    print()
+

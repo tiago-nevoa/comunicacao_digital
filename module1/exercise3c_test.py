@@ -1,4 +1,4 @@
-from exercise3 import password_generator
+from exercise3c import password_generator
 
 five_strong_passwords = []
 

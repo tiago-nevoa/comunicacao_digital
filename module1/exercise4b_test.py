@@ -1,5 +1,5 @@
-#from exercise2a import self_information_and_entropy
-from exercise3 import password_generator
+from exercise2a import self_information_and_entropy
+from exercise3c import password_generator
 from exercise4b import *
 
 fileIn = "TestFilesCD/alice29.txt"
@@ -17,4 +17,12 @@ cypher_file(fileOutEnc, fileOutDec, theKey)
 print("File Decrypted.. Done!")
 
 print("\nSelf Information and Entropy...\n")
-# TODO : Self Information and Entropy
+print(f'File: {fileIn}')
+self_information_and_entropy(fileIn)
+
+print(f'File: {fileOutEnc}')
+self_information_and_entropy(fileOutEnc)
+
+print(f'File: {fileOutDec}')
+self_information_and_entropy(fileOutDec)
+
