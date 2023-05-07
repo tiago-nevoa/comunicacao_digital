@@ -39,5 +39,5 @@ def entropy(file):
         entropy = -(percentage * math.log(percentage, 2))
         total_entropy += entropy
 
-    return total_entropy
+    return round(total_entropy, 2)
 

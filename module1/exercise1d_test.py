@@ -17,4 +17,4 @@ for key in self_informations(file):
 
 # entropy
 print("Entropy")
-print(f'H({file}) = {round(entropy(file), 2)}')
+print(f'H({file}) = {entropy(file)}')
