@@ -17,4 +17,4 @@ cypher_file(fileOutEnc, fileOutDec, theKey)
 print("File Decrypted.. Done!")
 
 print("\nSelf Information and Entropy...\n")
-
+# TODO : Self Information and Entropy
