@@ -1,4 +1,5 @@
 from pathlib import Path
+from exercise3 import password_generator
 
 # Considere a cifra de Vernam para ficheiros de texto. Esta cifra realiza o XOR bit a bit de todos os caracteres
 # de duas sequências, plainText e theKey, resultando ainda uma sequência de caracteres, cipherText.
@@ -9,36 +10,40 @@ from pathlib import Path
 
 files_path = Path("TestFilesCD/")
 
+
 def makeVernamCypher(plainText, theKey):
-  # convert plainText to int
-  if isinstance(plainText, str):
-    plainText = stringToBinary(plainText)
-  # plainText XOR theKey
-  return plainText^theKey
+    # convert plainText to int
+    if isinstance(plainText, str):
+        plainText = stringToBinary(plainText)
+    # plainText XOR theKey
+    return plainText ^ theKey
+
 
 def binaryToString(number):
-  sequenceBytes = number.to_bytes((number.bit_length() + 7) // 8, 'big')
-  stringSequence = sequenceBytes.decode('UTF-8')
-  return stringSequence
+    sequenceBytes = number.to_bytes((number.bit_length() + 7) // 8, 'big')
+    stringSequence = sequenceBytes.decode('UTF-8')
+    return stringSequence
+
 
 def stringToBinary(text):
-  return int.from_bytes(text.encode(), "big")
+    return int.from_bytes(text.encode(), "big")
 
 
 def readFile(file, key):
-  n = len(list(str(key)))
+    n = len(list(str(key)))
 
-  with open(file, "r", errors='ignore') as f:
-    text = f.read()
-    chunks = [text[i:i + n] for i in range(0, len(text), n)]
+    with open(file, "r", errors='ignore') as f:
+        text = f.read()
+        chunks = [text[i:i + n] for i in range(0, len(text), n)]
 
-  return chunks
+    return chunks
+
 
 def writeFile(file, contents):
-  # Open the file in write mode
-  with open(file, "w", errors='ignore') as file:
-    # Write the modified contents back to the file
-    file.write(contents)
+    # Open the file in write mode
+    with open(file, "w", errors='ignore') as file:
+        # Write the modified contents back to the file
+        file.write(contents)
 
 
 sequence = 'abcabcd'
@@ -67,20 +72,19 @@ chunks = readFile(file, constantKey)
 
 chunksCyphered = []
 for chunk in chunks:
-  chunksCyphered.append(makeVernamCypher(chunk, constantKey))
+    chunksCyphered.append(makeVernamCypher(chunk, constantKey))
 
 chunksCypheredStrings = []
 for chunk in chunksCyphered:
-  chunksCypheredStrings.append(str(chunk))
+    chunksCypheredStrings.append(str(chunk))
 chunksCypheredStrings = ''.join(chunksCypheredStrings)
 writeFile("cypheredFile.txt", chunksCypheredStrings)
 
-
 chunksDeciphered = []
 for chunk in chunksCyphered:
-  # chunksDeciphered.append(makeVernamCypher(chunk, constantKey))
-  # print(len(str(makeVernamCypher(chunk, constantKey))))
-  chunksDeciphered.append(binaryToString(makeVernamCypher(chunk, constantKey)))
+    # chunksDeciphered.append(makeVernamCypher(chunk, constantKey))
+    # print(len(str(makeVernamCypher(chunk, constantKey))))
+    chunksDeciphered.append(binaryToString(makeVernamCypher(chunk, constantKey)))
 
 print(''.join(chunksDeciphered))
 chunksDeciphered = ''.join(chunksDeciphered)
@@ -102,20 +106,26 @@ writeFile("decipheredFile.txt", chunksDeciphered)
 #
 # writeFile("decipheredFile.txt", chunksDeciphered)
 
-key = "3333333".encode('utf-8')
+# VernamManiacs -------------------> Check this propose to exc 4.b
+
+theKey = password_generator().encode('utf-8')
+print(theKey)
+fileIn = files_path / "alice29.txt"
+fileOutEnc = files_path / "encrypted-file.txt"
+fileOutDec = files_path / "decrypted-file.txt"
 
 
-def xor_file(input_file_name, output_file_name, key):
-  with open(input_file_name, 'rb') as input_file, open(output_file_name, 'wb') as output_file:
-    while True:
-      byte_block = input_file.read(len(key))  # read a block of bytes from the input file
-      if not byte_block:  # check if the end of the file is reached
-        break
-      xor_block = bytes(
-        [b ^ k for b, k in zip(byte_block, key)])  # perform XOR operation with the corresponding key value
-      output_file.write(xor_block)  # write the result to the output file
+def cypher_file(input_file_name, output_file_name, key):
+    with open(input_file_name, 'rb') as input_file, open(output_file_name, 'wb') as output_file:
+        while True:
+            byte_block = input_file.read(len(key))  # read a block of bytes from the input file
+            if not byte_block:  # check if the end of the file is reached
+                break
+            xor_block = bytes(
+                [b ^ k for b, k in zip(byte_block, key)])  # perform XOR operation with the corresponding key value
+            output_file.write(xor_block)  # write the result to the output file
 
 
-xor_file(file, "encTestTn.txt", key)
+cypher_file(fileIn, fileOutEnc, theKey)
 
-xor_file("encTestTn.txt", "decTestTn.txt", key)
+cypher_file(fileOutEnc, fileOutDec, theKey)
