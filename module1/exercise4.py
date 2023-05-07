@@ -102,3 +102,20 @@ writeFile("decipheredFile.txt", chunksDeciphered)
 #
 # writeFile("decipheredFile.txt", chunksDeciphered)
 
+key = "3333333".encode('utf-8')
+
+
+def xor_file(input_file_name, output_file_name, key):
+  with open(input_file_name, 'rb') as input_file, open(output_file_name, 'wb') as output_file:
+    while True:
+      byte_block = input_file.read(len(key))  # read a block of bytes from the input file
+      if not byte_block:  # check if the end of the file is reached
+        break
+      xor_block = bytes(
+        [b ^ k for b, k in zip(byte_block, key)])  # perform XOR operation with the corresponding key value
+      output_file.write(xor_block)  # write the result to the output file
+
+
+xor_file(file, "encTestTn.txt", key)
+
+xor_file("encTestTn.txt", "decTestTn.txt", key)
