@@ -1,4 +1,3 @@
-import math
 import os
 from pathlib import Path
 from exercise2a import self_information_and_entropy
@@ -9,12 +8,7 @@ from exercise2a import self_information_and_entropy
 # (i) Apresente uma estimativa da percentagem de ocorrência de cada símbolo (carater).
 # (ii) Apresente o valor da entropia de ambos os ficheiros.
 
-files_path = Path("Word_lists/")
-list_of_files = os.listdir(files_path)
 
-# TODO: histograma parece nao estar a sair corretamente
-for file_name in list_of_files:
-    print(f'File: {file_name}')
-    self_information_and_entropy(files_path / file_name)
-    print()
+# TODO: we need adapt the exercise 2a to re use here
+
 
