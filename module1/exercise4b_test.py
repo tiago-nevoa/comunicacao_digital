@@ -1,6 +1,7 @@
-from exercise2a import self_information_and_entropy
+from module1.exercise1d import *
 from exercise3c import password_generator
 from exercise4b import *
+
 
 fileIn = "TestFilesCD/alice29.txt"
 fileOutEnc = "Output_Files/encrypted_file.txt"
@@ -18,11 +19,17 @@ print("File Decrypted.. Done!")
 
 print("\nSelf Information and Entropy...\n")
 print(f'File: {fileIn}')
-self_information_and_entropy(fileIn)
+histogram(fileIn)
+print("Entropy")
+print(f'H = {round(entropy(fileIn), 2)}')
 
 print(f'File: {fileOutEnc}')
-self_information_and_entropy(fileOutEnc)
+histogram(fileOutEnc)
+print("Entropy")
+print(f'H = {round(entropy(fileOutEnc), 2)}')
 
 print(f'File: {fileOutDec}')
-self_information_and_entropy(fileOutDec)
+histogram(fileOutDec)
+print("Entropy")
+print(f'H = {round(entropy(fileOutDec), 2)}')
 
