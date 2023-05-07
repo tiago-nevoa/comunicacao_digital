@@ -1,18 +1,23 @@
 from exercise5a import binary_symmetric_channel
 from exercise4a import stringToBinary
+from exercise4a import makeVernamCypher
 
-# transmitted_bits = binary_symmetric_channel("01001", 0.6)
-
-# print(transmitted_bits)
-binary_file_sequence = []
+input_bits = []
+error_rate = 0.6
 
 with open('alice29.txt', 'r') as f:
     contents = f.readlines()
     for line in contents:
-        binary_file_sequence.append(bin(stringToBinary(line)))
+        input_bits.append(bin(stringToBinary(line)))
 f.close()
 
-binary_file_sequence = "".join(binary_file_sequence).replace("0b", "")
-transmitted_bits = binary_symmetric_channel(binary_file_sequence, 0.6)
+input_bits = "".join(input_bits).replace("0b", "")
+output_bits = binary_symmetric_channel(input_bits, error_rate)
 
-print(transmitted_bits)
+results = [(ord(a) ^ ord(b)) for a, b in zip(input_bits, output_bits)]
+
+total_errors = len([num for num in results if num == 1])
+total_bits = len(list(output_bits))
+
+BER = round(total_errors / total_bits, 4)
+
