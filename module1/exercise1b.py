@@ -1,4 +1,5 @@
-# (b) Função que determina o máximo divisor comum entre dois números inteiros a e b, através do algoritmo de Euclides.
+# (b) Função que determina o máximo divisor comum entre dois números inteiros a e b,
+# através do algoritmo de Euclides.
 def sort(a, b):
     if a < b:
         aux = a
