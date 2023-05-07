@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 files_path = Path("TestFilesCD/")
 list_of_files = os.listdir(files_path)
 
+
 def self_information_and_entropy(file):
     frequencies = symb_frequencies(file)
     total_frequencies = float(sum(frequencies.values()))

@@ -1,4 +1,5 @@
 from pathlib import Path
+from exercise2a import self_information_and_entropy
 from exercise3 import password_generator
 
 # Considere a cifra de Vernam para ficheiros de texto. Esta cifra realiza o XOR bit a bit de todos os caracteres
@@ -78,7 +79,7 @@ chunksCypheredStrings = []
 for chunk in chunksCyphered:
     chunksCypheredStrings.append(str(chunk))
 chunksCypheredStrings = ''.join(chunksCypheredStrings)
-writeFile("cypheredFile.txt", chunksCypheredStrings)
+#writeFile("cypheredFile.txt", chunksCypheredStrings)
 
 chunksDeciphered = []
 for chunk in chunksCyphered:
@@ -86,9 +87,9 @@ for chunk in chunksCyphered:
     # print(len(str(makeVernamCypher(chunk, constantKey))))
     chunksDeciphered.append(binaryToString(makeVernamCypher(chunk, constantKey)))
 
-print(''.join(chunksDeciphered))
+#print(''.join(chunksDeciphered))
 chunksDeciphered = ''.join(chunksDeciphered)
-writeFile("decipheredFile.txt", chunksDeciphered)
+#writeFile("decipheredFile.txt", chunksDeciphered)
 
 # chunksCyphered = ''.join(chunksCyphered)
 #
@@ -109,6 +110,7 @@ writeFile("decipheredFile.txt", chunksDeciphered)
 # VernamManiacs -------------------> Check this propose to exc 4.b
 
 theKey = password_generator().encode('utf-8')
+print("The generator key is: ")
 print(theKey)
 fileIn = files_path / "alice29.txt"
 fileOutEnc = files_path / "encrypted-file.txt"
@@ -127,5 +129,8 @@ def cypher_file(input_file_name, output_file_name, key):
 
 
 cypher_file(fileIn, fileOutEnc, theKey)
-
+print("File Encrypted.. Done!")
 cypher_file(fileOutEnc, fileOutDec, theKey)
+print("File Decrypted.. Done!")
+print("\nSelf Information and Entropy...\n")
+self_information_and_entropy(fileIn)
