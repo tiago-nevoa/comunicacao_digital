@@ -1,6 +1,5 @@
 from exercise5a import binary_symmetric_channel
 from exercise4a import stringToBinary
-from exercise4a import makeVernamCypher
 
 input_bits = []
 error_rate = 0.6
@@ -20,4 +19,7 @@ total_errors = len([num for num in results if num == 1])
 total_bits = len(list(output_bits))
 
 BER = round(total_errors / total_bits, 4)
+
+print(BER)
+print(error_rate)
 
