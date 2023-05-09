@@ -2,7 +2,7 @@ from exercise5b_i import *
 from exercise5a import binary_symmetric_channel
 from exercise4a import *
 
-input_file = 'example.txt'
+input_file = 'TestFilesCD/example.txt'
 error_rate = 0
 rows = 9
 cols = 10
