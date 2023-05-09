@@ -4,7 +4,7 @@ from exercise4a import stringToBinary
 input_bits = []
 error_rate = 0.6
 
-with open('alice29.txt', 'r') as f:
+with open('TestFilesCD/alice29.txt', 'r') as f:
     contents = f.readlines()
     for line in contents:
         input_bits.append(bin(stringToBinary(line)))

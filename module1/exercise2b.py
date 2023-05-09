@@ -1,20 +1,28 @@
-import math
-import os
-from pathlib import Path
-from exercise2a import self_information_and_entropy
-
 # Considere os ficheiros ListaPalavrasEN.txt e ListaPalavrasPT.txt,
 # os quais contêm listagens de palavras em Língua Inglesa e Língua Portuguesa.
 # Para cada Língua:
 # (i) Apresente uma estimativa da percentagem de ocorrência de cada símbolo (carater).
+from matplotlib import pyplot as plt
+
+from module1.exercise1c import *
+
+def percentages_histogram(file):
+    frequencies = symb_frequencies(file)
+    total_frequencies = float(sum(frequencies.values()))
+    percentages = []
+    for key in frequencies:
+        percentages.append(frequencies[key] / total_frequencies)
+
+    plt.bar(frequencies.keys(), percentages)
+    plt.title(f'{file}')
+    plt.xlabel('Symbol')
+    plt.ylabel('Percentage')
+    plt.show()
+
 # (ii) Apresente o valor da entropia de ambos os ficheiros.
 
-files_path = Path("Word_lists/")
-list_of_files = os.listdir(files_path)
+#entropy from exercise1d
 
-# TODO: histograma parece nao estar a sair corretamente
-for file_name in list_of_files:
-    print(f'File: {file_name}')
-    self_information_and_entropy(files_path / file_name)
-    print()
+
+
 
