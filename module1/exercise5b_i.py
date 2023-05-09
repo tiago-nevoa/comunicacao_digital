@@ -1,39 +1,43 @@
-# rows -> dimension of the rows of the matrix
-# cols -> dimension of the columns of the matrix
-# data -> list of input data to be interleaved
-# returns a square matrix with interleaved input data
-def interleave(input_data, rows, cols):
-    # Split input_data into rows and store them in input_matrix
-    input_matrix = []
-    for i in range(0, len(input_data), cols):
-        row = input_data[i:i + cols]
-        input_matrix.append(row)
+def interleave(data, rows, cols):
 
-    # Initialize output_data as an empty string
-    output_data = ''
+    matrix = []
 
-    # Iterate through the columns and rows of the input_matrix
+    for i in range(0, len(data), cols):
+        row = data[i:i + cols]
+        matrix.append(row)
+
+    interleaved_data = ''
+
     for col in range(cols):
         for row in range(rows):
-            # Check if the current position is within the bounds of the row
-            if col < len(input_matrix[row]):
-                # Append the character at the current position to output_data
-                output_data += input_matrix[row][col]
 
-    # Return the interleaved output_data
-    return output_data
+            if col < len(matrix[row]):
+                interleaved_data += matrix[row][col]
 
-def deinterleave(input_data, rows, cols):
-    # Initialize an empty input_matrix with the given dimensions
-    input_matrix = []
+    return interleaved_data
+
+
+
+
+
+def deinterleave(data, rows, cols):
+    
+    matrix = []
+
     for _ in range(rows):
         row = [''] * cols
-        input_matrix.append(row)
+        matrix.append(row)
 
-    # Fill the input_matrix with the input_data
     index = 0
     for col in range(cols):
         for row in range(rows):
-            if index < len(input_data):
-                input_matrix[row][col] = input_data[index]
+            if index < len(data):
+                matrix[row][col] = data[index]
                 index += 1
+
+    deinterleaved_data = ''
+    for row in range(rows):
+        for col in range(cols):
+            deinterleaved_data += matrix[row][col]
+
+    return deinterleaved_data
