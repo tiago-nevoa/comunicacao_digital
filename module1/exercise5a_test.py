@@ -20,6 +20,6 @@ total_bits = len(list(output_bits))
 
 BER = round(total_errors / total_bits, 4)
 
-print(BER)
-print(error_rate)
+print("BER:", BER)
+print("Error Rate:", error_rate)
 
