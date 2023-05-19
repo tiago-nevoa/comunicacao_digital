@@ -4,3 +4,4 @@
 .vscode/settings.json
 .vscode/launch.json
 /venv/
+/module1/__pycache__
