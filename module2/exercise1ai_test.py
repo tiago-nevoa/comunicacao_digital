@@ -1,5 +1,3 @@
-import glob
-
 from exercise1ai import calculate_BER
 
 error_rates = [10**-1, 10**-2, 10**-3, 10**-4, 10**-5]
