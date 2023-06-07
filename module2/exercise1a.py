@@ -1,2 +1,0 @@
-# exercicio1
-# introducao
