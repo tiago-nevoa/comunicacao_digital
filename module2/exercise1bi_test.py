@@ -13,7 +13,6 @@ for file in input_files:
         interleaved_data = interleave(data, rows, columns)
         output_file.write(interleaved_data)
 
-    deinterleaved_data = deinterleave(interleaved_data, rows, columns)
     print("--------------------")
     print(file)
     print("--------------------")
