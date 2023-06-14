@@ -15,9 +15,9 @@ for file in list_of_files:
     for error_rate in error_rates:
         BER = calculate_BER(file, error_rate)
         different_symbols = count_different_symbols(file, error_rate)
-        # print("p:", error_rate)
-        # print("BER:", BER)
-        # print("Number of different symbols:", different_symbols)
-        # print()
+        print("p:", error_rate)
+        print("BER:", BER)
+        print("Number of different symbols:", different_symbols)
+        print()
 
 
