@@ -3,6 +3,7 @@
 # Na transmissão de quatro ficheiros à sua escolha,
 # usando o diagrama apresentado na Figura 1 (b), calcule os seguintes valores de BER:
 # (i) BER1, entre a entrada e a saída do BSC, sem controlo de erros;
+import os.path
 
 # Para a transmissão de cada ficheiro e para todos os valores de p:
 # indique o número total de bits que passam pelo BSC;
@@ -34,3 +35,26 @@ def calculate_BER(file, error_rate):
 
     BER = round(total_errors / total_bits, 7)
     return BER
+
+def count_bits_through_BSC(file):
+    with open(file, 'rb') as f:
+        contents = f.read()
+        file_bits = len(contents) * 8 # *8 because Python reads file in bytes
+    f.close()
+    return file_bits
+
+def count_different_symbols(file, error_rate):
+    with open(file, 'r') as f:
+        contents = f.read()
+        char_list_A = list(contents)
+
+    # TODO: char_list_A needs to be binary before going through binary_simmetry_channel
+    char_list_B = binary_symmetric_channel(char_list_A, error_rate)
+
+    different_chars = 0
+    for charA, charB in zip(char_list_A, char_list_B):
+        if charA != charB:
+            different_chars += 1
+
+    return different_chars
+
