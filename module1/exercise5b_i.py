@@ -10,14 +10,10 @@ def interleave(data, rows, cols):
 
     for col in range(cols):
         for row in range(rows):
-
             if col < len(matrix[row]):
-                interleaved_data += matrix[row][col]
+                interleaved_data += str(matrix[row][col])  # Convert integer char to string before concatenating
 
     return interleaved_data
-
-
-
 
 
 def deinterleave(data, rows, cols):
