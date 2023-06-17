@@ -3,16 +3,14 @@
 # Na transmissão de quatro ficheiros à sua escolha,
 # usando o diagrama apresentado na Figura 1 (b), calcule os seguintes valores de BER:
 # (i) BER1, entre a entrada e a saída do BSC, sem controlo de erros;
-import os.path
 
 # Para a transmissão de cada ficheiro e para todos os valores de p:
 # indique o número total de bits que passam pelo BSC;
-# indique o número de símbolos diferentes entre os ficheiros A e B;
-# compare os valores de BER1, BER2 e BER3.
-# Comente os resultados.
+# indique o número de símbolos diferentes entre os ficheiros A e B
 
-from module1.exercise5a import binary_symmetric_channel
 from module1.exercise4a import stringToBinary, binaryToString
+from module1.exercise5a import binary_symmetric_channel
+
 
 input_bits = []
 
@@ -47,17 +45,23 @@ def count_bits_through_BSC(file):
 
 
 def count_different_symbols(file, error_rate):
-    with open(file, 'r') as f:
-        chars_A = f.read()
-    f.close()
+    with open(file, 'r', encoding='ISO-8859-1') as file:
+        chars_A = file.read()
 
     chars_A_bin = bin(stringToBinary(chars_A))[2:]
     chars_B_bin = binary_symmetric_channel(chars_A_bin, error_rate)
     chars_B = binaryToString(int(chars_B_bin, 2))  # Convert chars_B_bin to an integer
 
+    # # teste de encoding
+    # with open(f'{file}_output', 'w', encoding='ISO-8859-1') as file:
+    #     file.write(chars_B)
+    # # print(chars_B)
+    # # fim do teste de encoding
+
     different_chars = 0
-    for charA, charB in zip(chars_A, chars_B):
-        if charA != charB:
+    min_length = min(len(chars_A), len(chars_B))
+    for i in range(min_length):
+        if chars_A[i] != chars_B[i]:
             different_chars += 1
 
     return different_chars
