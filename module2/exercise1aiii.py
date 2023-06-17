@@ -10,16 +10,12 @@ from module1.exercise4a import stringToBinary
 
 # (ii) BER3, após a aplicação de código de Hamming (7, 4) sobre o BSC, em modo de correção;
 
-def hamming_code_bsc_correction_mode(file, error_rate):
-    input_bits = []
+def BER_hamming_code_bsc_correction_mode(file, error_rate, hamming_n, hamming_k):
+    with open(file, 'r') as input_file:
+        contents = input_file.read()
+        input_bits = bin(stringToBinary(contents)).replace("0b", "").zfill(hamming_n - hamming_k)
 
-    with open(file, 'r') as f:
-        contents = f.readlines()
-        for line in contents:
-            input_bits.extend(bin(stringToBinary(line)).replace("0b", "").zfill(4))
-    f.close()
-
-    encoded_bits = []  # Initialize encoded_bits as a list
+    encoded_bits = []
 
     # Encode the input bits using Hamming (7, 4) code
     for i in range(0, len(input_bits), 4):
@@ -30,12 +26,12 @@ def hamming_code_bsc_correction_mode(file, error_rate):
         message = input_bits[i:i + 4]
 
         # Calculate parity bits
-        parity_1 = str((int(message[0]) + int(message[1]) + int(message[3])) % 2)
-        parity_2 = str((int(message[0]) + int(message[2]) + int(message[3])) % 2)
-        parity_3 = str((int(message[1]) + int(message[2]) + int(message[3])) % 2)
+        parity_0 = str(int(message[1]) ^ int(message[2]) ^ int(message[3]))
+        parity_1 = str(int(message[0]) ^ int(message[1]) ^ int(message[3]))
+        parity_2 = str(int(message[0]) ^ int(message[2]) ^ int(message[3]))
 
         # Construct the encoded bits
-        encoded_bits += message + [parity_1, parity_2, parity_3]  # Append to the list
+        encoded_bits += [message, parity_0, parity_1, parity_2]
 
     output_bits = binary_symmetric_channel("".join(encoded_bits), error_rate)
 
