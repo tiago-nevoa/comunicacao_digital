@@ -20,7 +20,7 @@ def stringToBinary(text):
 
 def binaryToString(number):
     sequenceBytes = number.to_bytes((number.bit_length() + 7) // 8, 'big')
-    stringSequence = sequenceBytes.decode('UTF-8', errors='ignore')
+    stringSequence = sequenceBytes.decode('ISO-8859-1')
     return stringSequence
 
 
