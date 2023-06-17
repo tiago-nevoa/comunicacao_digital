@@ -16,19 +16,13 @@ input_bits = []
 
 
 def calculate_BER(file, error_rate):
-    input_bits = []
+    with open(file, 'r') as input_file:
+        contents = input_file.read()
 
-    with open(file, 'r') as f:
-        contents = f.readlines()
-        for line in contents:
-            input_bits.append(bin(stringToBinary(line)))
-    f.close()
-
-    input_bits = "".join(input_bits).replace("0b", "")
+    input_bits=bin(stringToBinary(contents)).replace("0b","")
     output_bits = binary_symmetric_channel(input_bits, error_rate)
 
     results = [(ord(a) ^ ord(b)) for a, b in zip(input_bits, output_bits)]
-
     total_errors = len([num for num in results if num == 1])
     total_bits = len(list(output_bits))
 
@@ -37,10 +31,9 @@ def calculate_BER(file, error_rate):
 
 
 def count_bits_through_BSC(file):
-    with open(file, 'rb') as f:
-        contents = f.read()
+    with open(file, 'rb') as input_file:
+        contents = input_file.read()
         file_bits = len(contents) * 8  # *8 because Python reads file in bytes
-    f.close()
     return file_bits
 
 
@@ -53,7 +46,7 @@ def count_different_symbols(file, error_rate):
     chars_B = binaryToString(int(chars_B_bin, 2))  # Convert chars_B_bin to an integer
 
     # # teste de encoding
-    # with open(f'{file}_output', 'w', encoding='ISO-8859-1') as file:
+    # with open("output_file.txt", 'w', encoding='ISO-8859-1') as file:
     #     file.write(chars_B)
     # # print(chars_B)
     # # fim do teste de encoding
