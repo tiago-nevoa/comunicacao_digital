@@ -1,6 +1,8 @@
 import sys
 import os
 
+import numpy as np
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
@@ -32,7 +34,7 @@ def BER_repetition_code_bsc_correction_mode(file, error_rate, repetition_code):
     total_errors = sum([int(a) != int(b) for a, b in zip(input_bits, decoded_bits)])
     total_bits = len(input_bits)
 
-    BER = round(total_errors / total_bits, 10)
+    BER = np.double(total_errors / total_bits)
 
     return BER
 

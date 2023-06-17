@@ -26,7 +26,7 @@ def calculate_BER(file, error_rate):
     total_errors = len([num for num in results if num == 1])
     total_bits = len(list(output_bits))
 
-    BER = round(total_errors / total_bits, 7)
+    BER = round(total_errors / total_bits, 20)
     return BER
 
 
