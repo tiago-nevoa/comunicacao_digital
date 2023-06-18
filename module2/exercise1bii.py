@@ -23,14 +23,14 @@ def BER_repetition_code_bsc_correction_mode(file, error_rate, repetition_code, i
 
   output_bits = binary_symmetric_channel(encoded_bits, error_rate)
 
-    # select only the corrected bits after applying the error correction mechanism
+  # select only the corrected bits after applying the error correction mechanism
   decoded_bits = ''
   for i in range(0, len(output_bits), repetition_code): # for each sequence of length 4
         sequence = output_bits[i:i+repetition_code]
         majority_bit = max(set(sequence), key=sequence.count)  # find the majority bit
         decoded_bits += majority_bit
 
-    # find the total number of bit errors between the original input_bits and the decoded_bits
+  # find the total number of bit errors between the original input_bits and the decoded_bits
   total_errors = sum([int(a) != int(b) for a, b in zip(input_bits, decoded_bits)])
   total_bits = len(input_bits)
 
