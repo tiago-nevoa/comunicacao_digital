@@ -85,3 +85,10 @@ def BER_hamming_code_bsc_correction_mode(file, error_rate):
 
     return BER
 
+def count_bits_through_BSC(file):
+    with open(file, 'rb') as input_file:
+        contents = input_file.read()
+    file_bits = len(contents) * 8 # *8 because Python counts bytes
+    messages = file_bits // 4 # number of 4-bit messages
+    file_bits = messages * 7 # each 4-bit message turns into a 7-bit codeword
+    return file_bits
