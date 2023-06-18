@@ -6,10 +6,10 @@ parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 
 from module1.exercise5b_i import interleave, deinterleave
-from exercise1bi import calculate_BER, count_bits_through_BSC, count_different_symbols
+from exercise1bii import BER_repetition_code_bsc_correction_mode, count_bits_through_BSC, count_different_symbols
 
 error_rates = [10**-1, 10**-2, 10**-3, 10**-4, 10**-5]
-input_files = ["TestFilesCD/a.txt", "TestFilesCD/alice29.txt", "TestFilesCD/cp.htm", "TestFilesCD/progc.c"]
+input_files = ["TestFilesCD/alice29.txt", "TestFilesCD/progc.c"]
 interleaving_output_file = "interleaving_output.txt"
 rows = 2 # for interleave
 columns = 3 # for interleave
@@ -29,7 +29,7 @@ for file in input_files:
     print("For each p in", error_rates)
     print()
     for error_rate in error_rates:
-        BER = calculate_BER(interleaving_output_file, error_rate, rows, columns)
+        BER = BER_repetition_code_bsc_correction_mode(interleaving_output_file, error_rate, 3, rows, columns)
         different_symbols = count_different_symbols(file, error_rate, rows, columns)
         print("p:", error_rate)
         print("BER:", BER)

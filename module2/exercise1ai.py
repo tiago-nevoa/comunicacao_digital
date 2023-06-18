@@ -8,6 +8,13 @@
 # indique o número total de bits que passam pelo BSC;
 # indique o número de símbolos diferentes entre os ficheiros A e B
 
+import sys
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
 from module1.exercise4a import stringToBinary, binaryToString
 from module1.exercise5a import binary_symmetric_channel
 
