@@ -13,7 +13,7 @@ from module1.exercise4a import stringToBinary
 # (ii) BER2, após a aplicação de código de repetição (3, 1) sobre o BSC, em modo de correção;
 
 def BER_repetition_code_bsc_correction_mode(file, error_rate, repetition_code):
-    with open(file, 'r') as input_file:
+    with open(file, 'r', encoding='ISO-8859-1') as input_file:
         contents = input_file.read()
 
     input_bits=bin(stringToBinary(contents)).replace("0b","")
