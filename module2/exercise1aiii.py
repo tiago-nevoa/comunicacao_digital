@@ -39,9 +39,9 @@ def BER_hamming_code_bsc_correction_mode(file, error_rate):
 
     output_bits = binary_symmetric_channel("".join(encoded_bits), error_rate)
 
-    decoded_bits = ''
+    # decoded_bits = ''
     error_positions = []
-    transpose_parity_matrix = [['1', '0', '0'],
+    transpose_parity_matrix = [['1', '1', '0'],
                                ['1', '0', '1'],
                                ['0', '1', '1'],
                                ['1', '1', '1'],
@@ -50,19 +50,16 @@ def BER_hamming_code_bsc_correction_mode(file, error_rate):
                                ['0', '0', '1']]
 
     # Decode the received bits
+    # output_bits = list(output_bits)  # Convert to list
     for i in range(0, len(output_bits), 7):
-        # # Check if there are enough bits remaining to form a complete group
-        # if i + 7 > len(output_bits):
-        #     break
 
         codeword = output_bits[i:i + 7]
 
         # Calculate syndrome bits
         syndrome_0 = str((int(codeword[0]) + int(codeword[1]) + int(codeword[3]) + int(codeword[4])) % 2)
         syndrome_1 = str((int(codeword[0]) + int(codeword[2]) + int(codeword[3]) + int(codeword[5])) % 2)
-        syndrome_2 = str((int(codeword[1]) ^ int(codeword[2]) ^ int(codeword[3]) ^ int(codeword[6])) % 2)
+        syndrome_2 = str((int(codeword[1]) + int(codeword[2]) + int(codeword[3]) + int(codeword[6])) % 2)
         syndrome = [syndrome_2, syndrome_1, syndrome_0]
-        # print("syndrome", syndrome)
 
         # Check if any error occurred
         total_errors = 0
@@ -73,16 +70,20 @@ def BER_hamming_code_bsc_correction_mode(file, error_rate):
                 error_positions.append(transpose_parity_matrix.index(syndrome))
                 total_errors += 1
 
-        # decoded_bits += codeword[0] + codeword[1] + codeword[2] + codeword[4]
-    print("error_positions", error_positions)
-
-    # Correct the errors
-    for position in error_positions:
-        corrected_bit = '1' if output_bits[position] == '0' else '0'
-        output_bits = output_bits[:position] + corrected_bit + output_bits[position + 1:]
+            # Correct the errors
+            for position in error_positions:
+                corrected_bit = '1' if codeword[position] == '0' else '0'
+                codeword = codeword[:position] + corrected_bit + codeword[position + 1:]
+################# TODO corrigir esta parte, mas acho que e algo deste genero ######################
+        #     # Assign the corrected codeword back to output_bits
+        #     output_bits[i:i + 7] = codeword
+        #
+        # output_bits = ''.join(output_bits)  # Convert back to string
+###############################################################
 
     # Calculate Bit Error Rate (BER)
     total_errors = sum([int(a) != int(b) for a, b in zip("".join(encoded_bits), output_bits)])
+    print("total_errors_comparison", total_errors)
     total_bits = len("".join(encoded_bits))
     BER = round(total_errors / total_bits, 20)
 
