@@ -13,7 +13,7 @@ list_of_files = ["TestFilesCD/a.txt", "TestFilesCD/alice29.txt", "TestFilesCD/cp
 test_file = list_of_files[1]
 for error_rate in error_rates:
     print(test_file)
-    BER = BER_hamming_code_bsc_correction_mode(test_file, error_rate, hamming_n=7, hamming_k=4)
+    BER = BER_hamming_code_bsc_correction_mode(test_file, error_rate)
     print("Error Rate:", error_rate)
     print("BER:", BER)
     print()
