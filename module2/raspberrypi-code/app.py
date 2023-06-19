@@ -23,6 +23,3 @@ result = first_n_terms_gs(int(u), int(r), int(N))
 print("Here are the first", N, "terms of your GS:")
 print(result)
 write_to_port(result, error_check)
-
-
-

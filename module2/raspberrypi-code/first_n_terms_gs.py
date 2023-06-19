@@ -3,7 +3,7 @@
 
 def first_n_terms_gs(u, r, N):
     terms = [u]
-    for num in range(1,N):
-        term = u * r**num
+    for num in range(1, N):
+        term = u * r ** num
         terms.append(term)
     return terms
