@@ -1,13 +1,12 @@
 import serial
 import os 
 
-# Configure the serial connection
 def write_to_port(input_data):
+    # configure the serial connection
     ser = serial.Serial('/dev/ttyS0', 9600)  
-    while 1:
-    # Write data to the serial port
-        data = input_data + os.linesep
+    # write data to the serial port
+    for elem in input_data:
+        data = str(input_data) + os.linesep
         ser.write(data.encode())
-
-    # Close the serial connection
+    # close the serial connection
     ser.close()        
