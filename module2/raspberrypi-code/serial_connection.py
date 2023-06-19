@@ -1,6 +1,6 @@
 import serial
 import os
-from fletcher_checksum import *
+from fletcher_checksum import calculate_fletcher_checksum
 
 def write_to_port(input_data, error_check):
 
@@ -12,15 +12,16 @@ def write_to_port(input_data, error_check):
     print("result: " + data)
     ser.write(data.encode())
 
-    e_c_trans = str(error_check) + os.linesep
-    ser.write(e_c_trans.encode())
+    # write error verification option to the serial port
+    error_check_flag = str(error_check) + os.linesep
+    ser.write(error_check_flag.encode())
 
     # compute errors using checksum if required
     if error_check:
-        c_f_c = str(calculate_fletcher_checksum(input_data)) + os.linesep
+        original_fletcher_checksum = str(calculate_fletcher_checksum(input_data)) + os.linesep
         # write checksum result to the serial port
-        print("fletcher checksum : " + c_f_c)
-        ser.write(c_f_c.encode())
+        print("fletcher checksum : " + original_fletcher_checksum)
+        ser.write(original_fletcher_checksum.encode())
 
     # close the serial connection
     ser.close()
