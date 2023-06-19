@@ -3,14 +3,15 @@ def calculate_fletcher_checksum(data):
     sum1 = sum2 = 0
     # for each byte in the data
     for byte in data:
-    # add it to sum1 and update sum2 by adding the current value of sum1 
-    # sum1 and sum2 are reduced modulo 255 to keep them within the valid range
+        # add it to sum1 and update sum2 by adding the current value of sum1
+        # sum1 and sum2 are reduced modulo 255 to keep them within the valid range
         sum1 = (sum1 + byte) % 255
         sum2 = (sum2 + sum1) % 255
     # the final values of sum1 and sum2 represent the checksum
     # to get one checksum value: sum2 is shifted left by 8 bits and is combined with sum1 using an OR operation
     checksum = (sum2 << 8) | sum1
     return checksum
+
 
 # verify the integrity of the data using the fletcher checksum
 def verify_fletcher_checksum(data, checksum):
@@ -20,7 +21,6 @@ def verify_fletcher_checksum(data, checksum):
     # if they match, the data was successfully transmitted
     # else an error has occurred during transmission
     return calculated_checksum == checksum
-
 
 # ***************************************************************************************
 # Relatório:

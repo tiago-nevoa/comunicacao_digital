@@ -2,8 +2,8 @@ import serial
 import os
 from fletcher_checksum import calculate_fletcher_checksum
 
-def write_to_port(input_data, error_check):
 
+def write_to_port(input_data, error_check):
     # configure the serial connection
     ser = serial.Serial('/dev/ttyS0', 9600)
 
