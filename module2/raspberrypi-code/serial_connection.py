@@ -20,4 +20,4 @@ def write_to_port(input_data, error_check):
         ser.write(c_f_c.encode())
 
     # close the serial connection
-    ser.close()        
+    ser.close()
