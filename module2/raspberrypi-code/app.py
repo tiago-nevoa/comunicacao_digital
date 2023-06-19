@@ -1,4 +1,5 @@
 from first_n_terms_gs import *
+from serial_connection import * 
 
 u = input("Please enter the First Term of your GS: ")
 print("You entered: " + u)
@@ -17,8 +18,11 @@ if error_check == 'y':
 else:
     error_check = False
     
+result = first_n_terms_gs(int(u), int(r), int(N), error_check)
+
 print("Here are the first", N, "terms of your GS:")
-print(first_n_terms_gs(int(u), int(r), int(N), error_check))
+print(result)
+write_to_port(result)
 
 
 
