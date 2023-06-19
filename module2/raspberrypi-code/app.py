@@ -22,4 +22,15 @@ result = first_n_terms_gs(int(u), int(r), int(N))
 
 print("Here are the first", N, "terms of your GS:")
 print(result)
+
+# Open the file in write mode
+file = open("filename.txt", "w")
+
+# Write content to the file
+content = "This is the content to be written."
+file.write(content)
+
+# Close the file
+file.close()
+
 write_to_port(result, error_check)
