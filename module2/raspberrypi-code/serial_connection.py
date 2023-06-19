@@ -12,6 +12,9 @@ def write_to_port(input_data, error_check):
     print("result: " + data)
     ser.write(data.encode())
 
+    e_c_trans = str(error_check) + os.linesep
+    ser.write(e_c_trans)
+
     # compute errors using checksum if required
     if error_check:
         c_f_c = str(calculate_fletcher_checksum(input_data)) + os.linesep

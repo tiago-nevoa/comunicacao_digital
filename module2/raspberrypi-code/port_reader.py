@@ -13,6 +13,9 @@ while 1:
     received_fletcher_checksum = ser.readline()
     print("fletcher checksum : " + received_fletcher_checksum.decode())
 
+    e_c_receiver = ser.readline()
+    print(e_c_receiver)
+
     data_array = ast.literal_eval(data.decode())
     print(data_array)
     convert_fletcher_checksum = int(received_fletcher_checksum)
