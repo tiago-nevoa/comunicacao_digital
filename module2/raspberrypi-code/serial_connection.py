@@ -13,7 +13,7 @@ def write_to_port(input_data, error_check):
     ser.write(data.encode())
 
     e_c_trans = str(error_check) + os.linesep
-    ser.write(e_c_trans)
+    ser.write(e_c_trans.encode())
 
     # compute errors using checksum if required
     if error_check:
