@@ -6,7 +6,7 @@ def write_to_port(input_data):
     ser = serial.Serial('/dev/ttyS0', 9600)  
     # write data to the serial port
     for elem in input_data:
-        data = str(input_data) + os.linesep
+        data = str(elem) + os.linesep
         ser.write(data.encode())
     # close the serial connection
     ser.close()        
