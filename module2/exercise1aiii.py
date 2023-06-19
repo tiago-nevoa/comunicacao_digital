@@ -14,15 +14,15 @@ from module1.exercise4a import stringToBinary
 def BER_hamming_code_bsc_correction_mode(file, error_rate):
     with open(file, 'r') as input_file:
         contents = input_file.read()
-        input_bits = bin(stringToBinary(contents)).replace("0b", "").zfill(3)
+        input_bits = bin(stringToBinary(contents)).replace("0b", "")
+
+    # ensure the input_bits are divisible by 4
+    for i in range((4 - len(input_bits) % 4) % 4):
+        input_bits = "0" + input_bits
 
     encoded_bits = []
 
-    # Encode the input bits using Hamming (7, 4) code
     for i in range(0, len(input_bits), 4):
-        # Check if there are enough bits remaining to form a complete group
-        if i + 4 > len(input_bits):
-            break
 
         message = input_bits[i:i + 4]
 

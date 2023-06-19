@@ -18,10 +18,6 @@ sys.path.append(parent_dir)
 from module1.exercise4a import stringToBinary, binaryToString
 from module1.exercise5a import binary_symmetric_channel
 
-
-input_bits = []
-
-
 def calculate_BER(file, error_rate):
     with open(file, 'r') as input_file:
         contents = input_file.read()
@@ -51,12 +47,6 @@ def count_different_symbols(file, error_rate):
     chars_A_bin = bin(stringToBinary(chars_A))[2:]
     chars_B_bin = binary_symmetric_channel(chars_A_bin, error_rate)
     chars_B = binaryToString(int(chars_B_bin, 2))  # Convert chars_B_bin to an integer
-
-    # # teste de encoding
-    # with open("output_file.txt", 'w', encoding='ISO-8859-1') as file:
-    #     file.write(chars_B)
-    # # print(chars_B)
-    # # fim do teste de encoding
 
     different_chars = 0
     min_length = min(len(chars_A), len(chars_B))
