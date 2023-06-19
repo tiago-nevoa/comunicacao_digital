@@ -18,11 +18,11 @@ if error_check == 'y':
 else:
     error_check = False
     
-result = first_n_terms_gs(int(u), int(r), int(N), error_check)
+result = first_n_terms_gs(int(u), int(r), int(N))
 
 print("Here are the first", N, "terms of your GS:")
 print(result)
-write_to_port(result)
+write_to_port(result, error_check)
 
 
 
