@@ -1,27 +1,28 @@
 import serial
 import ast
-from fletcher_checksum import *
+from fletcher_checksum import verify_fletcher_checksum
 
-# Open the serial port
+# open the serial port
 ser = serial.Serial('/dev/tty.usbserial-1433240', 9600)
 
-# Read data from the serial port
 while 1:
+    # read data from the serial port
     data = ser.readline()
     print(data.decode())
 
-    e_c_receiver = ser.readline()
-    print(e_c_receiver.decode())
+    # read error verification option from the serial port
+    error_detection = ser.readline()
+    print(error_detection.decode())
 
-    received_fletcher_checksum = ser.readline()
-    print("fletcher checksum : " + received_fletcher_checksum.decode())
+    if error_detection == 'True':
+        # read original checksum result from the serial port
+        original_checksum = int(ser.readline())
+        print("fletcher checksum : " + original_checksum.decode())
 
-    data_array = ast.literal_eval(data.decode())
-    print(data_array)
-    convert_fletcher_checksum = int(received_fletcher_checksum)
-    print(convert_fletcher_checksum)
-    print("fletcher checksum validation: ", verify_fletcher_checksum(data_array, convert_fletcher_checksum))
+        # verify if the checksum of the original data matches the one of the transmitted data
+        data_array = ast.literal_eval(data.decode())
+        print(data_array)
+        print("fletcher checksum validation: ", verify_fletcher_checksum(data_array, original_checksum))
 
-
-# Close the serial port
+# close the serial port
 ser.close()
