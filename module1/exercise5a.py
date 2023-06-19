@@ -3,6 +3,7 @@ import random
 # binary_sequence -> input bits (0's and 1's) to transmit
 # p -> probability of introducing an error (BER)
 # returns a list of transmitted bits after potentially being flipped with probability p
+
 def binary_symmetric_channel(binary_sequence, p):
 
   sequence_list = list(binary_sequence)
