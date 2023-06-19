@@ -14,7 +14,10 @@ while 1:
     print("fletcher checksum : " + received_fletcher_checksum.decode())
 
     data_array = ast.literal_eval(data.decode())
-    ("fletcher checksum validation: " + verify_fletcher_checksum(data_array, int(received_fletcher_checksum)))
+    print(data_array)
+    convert_fletcher_checksum = int(received_fletcher_checksum)
+    print(convert_fletcher_checksum)
+    print("fletcher checksum validation: ", verify_fletcher_checksum(data_array, convert_fletcher_checksum))
 
 
 # Close the serial port
